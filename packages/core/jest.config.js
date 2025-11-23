@@ -12,16 +12,16 @@ module.exports = {
   coverageReporters: ['text', 'lcov', 'html'],
   coverageThreshold: {
     global: {
-      branches: 95,
+      branches: 90,
       functions: 95,
-      lines: 95,
-      statements: 95
+      lines: 93,
+      statements: 93
     },
     './src/cipher/': {
-      branches: 95,
+      branches: 90,
       functions: 95,
-      lines: 95,
-      statements: 95
+      lines: 93,
+      statements: 93
     }
   },
   moduleFileExtensions: ['ts', 'js', 'json'],

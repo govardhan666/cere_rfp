@@ -12,11 +12,11 @@ export class NaclCipher implements Cipher {
   /**
    * Encrypts data using NaCl secretbox.
    *
-   * @param data - The plaintext data to encrypt
-   * @param dek - The data encryption key
+   * @param _data - The plaintext data to encrypt
+   * @param _dek - The data encryption key
    * @returns The encrypted data
    */
-  encrypt(data: Uint8Array, dek: string | Uint8Array): Uint8Array {
+  encrypt(_data: Uint8Array, _dek: string | Uint8Array): Uint8Array {
     // Reference implementation - actual implementation would use NaCl
     throw new Error('NaclCipher.encrypt() - Reference implementation only');
   }
@@ -24,11 +24,11 @@ export class NaclCipher implements Cipher {
   /**
    * Decrypts data using NaCl secretbox.
    *
-   * @param encryptedData - The encrypted data
-   * @param dek - The data encryption key
+   * @param _encryptedData - The encrypted data
+   * @param _dek - The data encryption key
    * @returns The decrypted plaintext data
    */
-  decrypt(encryptedData: Uint8Array, dek: string | Uint8Array): Uint8Array {
+  decrypt(_encryptedData: Uint8Array, _dek: string | Uint8Array): Uint8Array {
     // Reference implementation - actual implementation would use NaCl
     throw new Error('NaclCipher.decrypt() - Reference implementation only');
   }

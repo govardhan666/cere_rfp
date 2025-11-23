@@ -1,5 +1,5 @@
 import { describe, it, expect } from '@jest/globals';
-import { createCipheriv, createDecipheriv } from 'crypto';
+import { createCipheriv, createDecipheriv, createHash, randomBytes } from 'crypto';
 import { AES256Cipher } from '../../src/cipher/AES256Cipher';
 
 /**
@@ -180,8 +180,7 @@ describe('AES256Cipher - NIST Test Vectors', () => {
       const ciphertext = Buffer.from(encrypted.subarray(16));
 
       // Derive the same key our cipher would use (SHA-256 of DEK)
-      const crypto = require('crypto');
-      const key = crypto.createHash('sha256').update(Buffer.from(dek, 'utf-8')).digest();
+      const key = createHash('sha256').update(Buffer.from(dek, 'utf-8')).digest();
 
       // Decrypt using Node.js crypto directly
       const decipher = createDecipheriv('aes-256-cbc', key, iv);
@@ -198,11 +197,10 @@ describe('AES256Cipher - NIST Test Vectors', () => {
       const dek = 'direct-test-key';
 
       // Derive key the same way our cipher does
-      const crypto = require('crypto');
-      const key = crypto.createHash('sha256').update(Buffer.from(dek, 'utf-8')).digest();
+      const key = createHash('sha256').update(Buffer.from(dek, 'utf-8')).digest();
 
       // Generate IV
-      const iv = crypto.randomBytes(16);
+      const iv = randomBytes(16);
 
       // Encrypt with Node.js crypto
       const nodeCipher = createCipheriv('aes-256-cbc', key, iv);

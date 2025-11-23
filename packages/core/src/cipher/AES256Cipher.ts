@@ -30,8 +30,7 @@ import { Cipher } from './Cipher';
  */
 export class AES256Cipher implements Cipher {
   private static readonly ALGORITHM = 'aes-256-cbc';
-  private static readonly IV_LENGTH = 16; // 128 bits for AES
-  private static readonly KEY_LENGTH = 32; // 256 bits
+  private static readonly IV_LENGTH = 16; // 128 bits for AES (16 bytes)
 
   /**
    * Derives a consistent 256-bit encryption key from the provided DEK.
@@ -99,7 +98,8 @@ export class AES256Cipher implements Cipher {
 
       return new Uint8Array(result);
     } catch (error) {
-      throw new Error(`Encryption failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      // Re-throw with context. Encryption errors are rare and usually indicate system issues.
+      throw new Error(`Encryption failed: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 
@@ -156,14 +156,9 @@ export class AES256Cipher implements Cipher {
 
       return new Uint8Array(decrypted);
     } catch (error) {
-      // Provide helpful error messages for common decryption failures
-      if (error instanceof Error) {
-        if (error.message.includes('bad decrypt') || error.message.includes('wrong final block length')) {
-          throw new Error('Decryption failed: Wrong key or tampered data');
-        }
-        throw new Error(`Decryption failed: ${error.message}`);
-      }
-      throw new Error('Decryption failed: Unknown error');
+      // Most decryption errors are due to wrong key or tampered data
+      // This includes padding errors, block size errors, etc.
+      throw new Error('Decryption failed: Wrong key or tampered data');
     }
   }
 }
