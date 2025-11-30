@@ -1,0 +1,42 @@
+{
+  "name": "cere-ddc-sdk-aes256-bounty",
+  "version": "0.5.0-aes",
+  "description": "DoraHacks Bounty #1196 - AES256Cipher Implementation for Cere DDC SDK",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace=@cere-ddc-sdk/core",
+    "test": "npm run test --workspace=@cere-ddc-sdk/core",
+    "test:coverage": "npm run test:coverage --workspace=@cere-ddc-sdk/core",
+    "lint": "npm run lint --workspace=@cere-ddc-sdk/core",
+    "lint:fix": "npm run lint:fix --workspace=@cere-ddc-sdk/core",
+    "type-check": "npm run type-check --workspace=@cere-ddc-sdk/core",
+    "clean": "npm run clean --workspace=@cere-ddc-sdk/core",
+    "examples:aes256": "ts-node examples/encryption/aes256.ts"
+  },
+  "keywords": [
+    "cere",
+    "ddc",
+    "encryption",
+    "aes",
+    "aes-256",
+    "dorahacks",
+    "bounty"
+  ],
+  "author": "DoraHacks Bounty Contributors",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cerebellum-Network/cere-ddc-sdk-js.git"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  }
+}
